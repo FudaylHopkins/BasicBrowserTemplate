@@ -21,6 +21,14 @@ class MainActivity : AppCompatActivity() {
         goButton = findViewById(R.id.goButton)
         webView = findViewById(R.id.webView)
 
+        webView.webViewClient = WebViewClient()
+        webView.settings.javaScriptEnabled = true
+
+        goButton.setOnClickListener {
+            val userInput = urlEditText.text.toString()
+            webView.loadUrl(userInput)
+        }
+
         // Allow your browser to intercept hyperlink clicks
         webView.webViewClient = object: WebViewClient() {
             override fun onPageFinished(view: WebView?, url: String?) {
